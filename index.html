@@ -8,11 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="background-animation">
-    <div class="shape shape-1"></div>
-    <div class="shape shape-2"></div>
-    <div class="shape shape-3"></div>
-  </div>
   
   <div class="container">
     <header>
@@ -252,6 +247,8 @@
       }
     }
 
+  
+  // Display countires dropdown list
     function showCountryInfo() {
       const selected = countryDropdown.selectedOptions[0];
       if (!selected || !selected.value) {
@@ -269,27 +266,34 @@
       localStorage.setItem("selectedCountry", selected.value);
     }
 
-    // Age Calculation
+  // Age Calculation 
     function calculateAgeDetails(dateStr) {
-      const birthDate = new Date(dateStr);
-      const now = new Date();
-      
-      let years = now.getFullYear() - birthDate.getFullYear();
-      let months = now.getMonth() - birthDate.getMonth();
-      let days = now.getDate() - birthDate.getDate();
+  const birthDate = new Date(dateStr);
+  const now = new Date();
 
-      if (days < 0) {
-        months--;
-        days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-      }
+  let years = now.getFullYear() - birthDate.getFullYear();
+  let months = now.getMonth() - birthDate.getMonth();
+  let days = now.getDate() - birthDate.getDate();
 
-      if (months < 0) {
-        years--;
-        months += 12;
-      }
+  if (days < 0) {
+    months--;
+    days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+  }
 
-      return { years, months, days };
-    }
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  // Age Validation
+  if (years < 18) {
+    alert("You are under 18.");
+    return null; // Or handle it differently if needed
+  }
+
+  return { years, months, days };
+}
+
 
     function displayAge(dateStr) {
       const { years, months, days } = calculateAgeDetails(dateStr);
@@ -553,7 +557,7 @@
   }
 
   .glass-card {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(150, 149, 230, 0.822);
     border-radius: 16px;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -900,7 +904,7 @@
   .glass-button.danger {
     background: rgba(253, 121, 168, 0.2);
     border-color: rgba(253, 121, 168, 0.3);
-    color: #d63031;
+    color: #f50909;
   }
 
   body.dark-mode .glass-button.danger {
